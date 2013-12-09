@@ -1,0 +1,11 @@
+fcea689a7031aac84cbcf0620a55fc7b *DESCRIPTION
+d50975588902f44049b8e11991b54eed *NAMESPACE
+a5d2c96731b3401a5ed6c3f412221c7b *R/function_fit_clm_1u_sigmaK_simple_new.R
+40d9ab4b9825948023e7013ecda3b736 *R/function_fit_clmm_simple_v4_sigmaK.R
+c6f81b20921e3a7a83872a0369a07924 *data/BreastCancer.RData
+37c55aad18a83fea1d4fa055205f757b *data/YeastCellCycle.RData
+86fb103f5cd379df6f4e621dd0059949 *man/BreastCancer.Rd
+eccbeb859efe62011870fce7cfe44958 *man/CORM-package.Rd
+698cb0b7226c86aa3eede681f9cefbec *man/YeastCellCycle.Rd
+9ee18df6faadad83ad361d87a14bbba9 *man/fit.CLM.Rd
+e05acc522227b90edd92245c0ba4a01f *man/fit.CLMM.Rd
