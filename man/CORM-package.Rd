@@ -9,17 +9,18 @@
 }
 
 \description{
-  The clustering of regression models method 
-  clusters genes based on the regression coefficients.
+  The clustering of regression models method models the expression 
+  level of each gene with regression and clusters genes based on 
+  the regression coefficients.
 }
 
 \details{
   \tabular{ll}{
     Package: \tab CORM\cr
     Type: \tab Package\cr
-    Version: \tab 1.0\cr
-    Date: \tab 2013-11-18\cr
-    License: \tab GPL(>=2)\cr
+    Version: \tab 1.0.1\cr
+    Date: \tab 2014-2-3\cr
+    License: \tab GPL(>=2)\cr.
   }
 }
 
@@ -28,23 +29,23 @@
 }
 
 \references{
-  Li-Xuan Qin and Steven G. Self (2006).  The clustering of regression models
-  method with application in gene expression data.  \emph{Biometrics}
+ \itemize{
+  \item Li-Xuan Qin and Steven G. Self (2006). The clustering of regression models
+  method with applications in gene expression data.  \emph{Biometrics}
   62, 526-533.
-  \url{ http://www.mskcc.org/mskcc/html/60448.cfm}  
+  \item Li-Xuan Qin (2008). An integrative analysis of microRNA and mRNA expression - 
+  a case study. \emph{Cancer Informatics} 6, 369-379.
+  \item Li-Xuan Qin, Linda Breeden and Steven G. Self (2014). Finding gene cluster 
+  for a replicated time course study. \emph{BMC Res Notes} 7:60.
+ }
 }
 
 \keyword{Introduction}
 
 \seealso{
   \code{\link{fit.CLM}},
-  \code{\link{fit.CLMM}}
-}
-
-\examples{
-  data(BreastCancer)
-  data.y <- BreastCancer$normalizedData
-  data.x <- BreastCancer$designMatrix
-  n.clst <- 9
-  fit1   <- fit.CLM(data.y, data.x, n.clst)
+  \code{\link{fit.CLMM}},
+  \code{\link{fit.CLMM.2}},
+  \code{\link{fit.CLMM.NA}},
+  \code{\link{fit.CLMM.NA.2}}
 }

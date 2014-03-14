@@ -13,10 +13,12 @@ This data set contains a subset of yeast cell cycle data taken from Spellman et 
 \usage{data(YeastCellCycle)}
 
 \format{
-  A list comprised of three components: normalizedData, normalizedData.sample and designMatrix.
-  normalizedData is a three dimensional array containing the normalized expression data of the 256 genes during yeast cell-cycle. 
-  normalizedData.sample is a randomly selected sample from normalizedData. It only contains 64 genes.
-  designMatrix is a three dimensional array used to fit the clustering of linear mixed models (CLMM).
+  A list comprised of three components: \bold{normalizedData}, \bold{normalizedData.sample} and \bold{designMatrix}.
+  \enumerate{
+  \item \bold{normalizedData} is a three dimensional array containing the normalized expression data of the 256 genes during yeast cell-cycle. 
+  \item \bold{normalizedData.sample} is a randomly selected sample from \bold{normalizedData}. It only contains 64 genes.
+  \item \bold{designMatrix} is a three dimensional array used to fit the clustering of linear mixed models (CLMM).
+ }
 }
 
 \references{

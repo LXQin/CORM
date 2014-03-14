@@ -25,7 +25,7 @@
     an integer, number of clusters .
   }
   \item{n.start}{
-    an integer used to get the starting values for the EM algorithm.
+    an integer used to get the starting value for the EM algorithm.
   }
 }
 
@@ -51,7 +51,7 @@
 }
 
 \details{
-This function implements the Clustering of Linear Models Method of Qin (2006). This method clusters genes based on the estimated regression parameters that model the relation between gene expression and sample covariates. 
+This function implements the Clustering of Linear Models Method of Qin and Self (2006). This method clusters genes based on the estimated regression parameters that model the relation between gene expression and sample covariates. 
 }
 
 \author{ Li-Xuan Qin 
@@ -59,27 +59,34 @@ This function implements the Clustering of Linear Models Method of Qin (2006). T
 }
 
 \references{
-  Li-Xuan Qin and Steven G. Self (2006).  The clustering of regression models
+ \itemize{
+  \item Li-Xuan Qin and Steven G. Self (2006).  The clustering of regression models
   method with applications in gene expression data.  \emph{Biometrics}
-  62, 526-533.
-  \url{ http://www.mskcc.org/mskcc/html/60448.cfm}  
+  62, 526-533. 
+  \item Li-Xuan Qin (2008). An integrative analysis of microRNA and mRNA expression - 
+  a case study. \emph{Cancer Informatics} 6, 369-379.
+ }
 }
 
 \seealso{
   \code{\link{fit.CLM}},
-  \code{\link{fit.CLMM}}
+  \code{\link{fit.CLMM}},
+  \code{\link{fit.CLMM.2}},
+  \code{\link{fit.CLMM.NA}},
+  \code{\link{fit.CLMM.NA.2}}
 }
 
 \examples{
-#test data
+#Example 1
+ #test data
   data(BreastCancer)
   data.y <- BreastCancer$normalizedData
   data.x <- BreastCancer$designMatrix
-#fit the model
+ #fit the model
   n.clst <- 9
   fit1   <- fit.CLM(data.y, data.x, n.clst)
   fit1.u <- apply(fit1$u.hat, MARGIN=1, FUN=order, decreasing=TRUE)[1,]
-#display the results
+ #display the results
   index.IDC <- which(data.x[,2]==0)
   index.ILC <- which(data.x[,2]==1)
   mean.IDC  <- apply(data.y[,index.IDC], MARGIN=1, FUN=mean, na.rm=TRUE)
@@ -94,6 +101,34 @@ This function implements the Clustering of Linear Models Method of Qin (2006). T
        pch=paste(fit1.u),
        col=color[fit1.u],
        main=paste("K=",n.clst))
+\dontrun{
+#Example 2
+ #test data
+  data(miRTargetGenes)
+  data.y <- miRTargetGenes$normalizedData
+  data.x <- miRTargetGenes$designMatrix
+ #fit the model
+  n.clst <- 9
+  n.start<- 20
+  fit2  	 <- fit.CLM(data.y, data.x, n.clst, n.start)
+  fit2.u   <- apply(fit2$u.hat, MARGIN=1, FUN=order, decreasing=TRUE)[1,]
+  fit2.u.o <- factor(fit2.u, levels=c(1,5,6,7,4,8,2,9,3), labels=1:9)
+  library(limma)
+  plot.y   <- lmFit(data.y, data.x)$coef \%*\% cbind(c(1,0,0,0),c(1,0,1,0),c(1,1,0,0),c(1,1,1,1))
+  plot.x   <- 1:4
+ #display the results
+  color		 <- rainbow(n.clst)
+  par(mfrow=c(3,4),mai=c(0.35, 0.4, 0.4, 0.2), mgp=c(1.6,0.4,0), tck=-0.01, las=2)
+  for(k in 1:n.clst){
+   plot(plot.x, plot.y[1,], type="n", xaxt="n", ylim=range(plot.y), 
+        xlab="", ylab="gene expression")
+   axis(1, plot.x, c("Normal \n","Normal \n +miRNA","Tumor \n","Tumor \n +miRNA"), 
+        las=1, cex.axis=1, mgp=c(1.5,1.2,0))
+   title(paste("cluster", k))
+   abline(h=0, lty=2)
+   for(j in which(fit2.u.o==k)) points(plot.x, plot.y[j,], type="b", col=color[k])
+  }
+}
 }
 
 \keyword{Functions}
