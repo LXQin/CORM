@@ -1,6 +1,6 @@
 Package: CORM
 Type: Package
-Version: 1.0.1
+Version: 1.0.2
 License: GPL (>= 2)
 Description: We proposed a new model-based clustering method, called the clustering of 
              regression models method(CORM), which groups genes that share a similar 
@@ -20,7 +20,7 @@ URL: http://www.r-project.org,
 Author: Li-Xuan Qin [aut],
   Jiejun Shi [cre]
 Maintainer: Jiejun Shi <shi.abraham.2010@gmail.com>
-Packaged: 2014-03-14 18:58:17 UTC; shij
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2014-03-14 20:35:06
+Packaged: 2014-06-30 01:09:18 UTC; jjshi
+Date/Publication: 2014-06-30 10:50:49

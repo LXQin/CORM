@@ -71,9 +71,7 @@ This function implements the Clustering of Linear Models Method of Qin and Self 
 \seealso{
   \code{\link{fit.CLM}},
   \code{\link{fit.CLMM}},
-  \code{\link{fit.CLMM.2}},
-  \code{\link{fit.CLMM.NA}},
-  \code{\link{fit.CLMM.NA.2}}
+  \code{\link{fit.CLMM.2}}
 }
 
 \examples{
@@ -101,6 +99,7 @@ This function implements the Clustering of Linear Models Method of Qin and Self 
        pch=paste(fit1.u),
        col=color[fit1.u],
        main=paste("K=",n.clst))
+ 
 \dontrun{
 #Example 2
  #test data

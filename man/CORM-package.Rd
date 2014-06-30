@@ -18,8 +18,8 @@
   \tabular{ll}{
     Package: \tab CORM\cr
     Type: \tab Package\cr
-    Version: \tab 1.0.1\cr
-    Date: \tab 2014-2-3\cr
+    Version: \tab 1.0.2\cr
+    Date: \tab 2014-6-22\cr
     License: \tab GPL(>=2)\cr.
   }
 }
@@ -45,7 +45,5 @@
 \seealso{
   \code{\link{fit.CLM}},
   \code{\link{fit.CLMM}},
-  \code{\link{fit.CLMM.2}},
-  \code{\link{fit.CLMM.NA}},
-  \code{\link{fit.CLMM.NA.2}}
+  \code{\link{fit.CLMM.2}}
 }

@@ -9,7 +9,7 @@
 \description{
   Fit a CLMM model for time course data (with or without replicates). 
   If replicated time courses, all replicates should be measured at the 
-  same time points. No missing data is allowed.
+  same time points. Missing data are allowed.
   }
 
 \usage{
@@ -18,7 +18,7 @@
 
 \arguments{
   \item{data.y}{
-    a three dimensional array of gene expression data, data.y[j, i, t] for gene j, sample i,  and time point t.
+    a three dimensional array of gene expression data, data.y[j, i, t] for gene j, sample i,  and time point t. Missing values should be indicated by "NA". And at least one case not missing in each pair of observations.
   }
   \item{data.x}{
     a three dimensional array of fixed effects (common for all genes), data.x[i, t, p] for sample i, time point t, and covariate p.
@@ -83,12 +83,11 @@
 \seealso{
   \code{\link{fit.CLM}},
   \code{\link{fit.CLMM}},
-  \code{\link{fit.CLMM.2}},
-  \code{\link{fit.CLMM.NA}},
-  \code{\link{fit.CLMM.NA.2}}
+  \code{\link{fit.CLMM.2}}
 }
 
 \examples{
+#Example 1
 #test data
   data(YeastCellCycle)
   data.y <- YeastCellCycle$normalizedData.sample
@@ -116,6 +115,42 @@
     for(j in i.plot) { lines(plot.x, data.y[j,1,], lty=3, lwd=1)}
     text(84,-1.9, paste(length(which(fit1.u==k)),"genes"))
   }
+
+\dontrun{
+#Example 2
+#test data
+  data(YeastCellCycle2)
+  data.y <- YeastCellCycle2$normalizedData.WT
+  data.x <- YeastCellCycle2$designMatrix.WT
+#fit the model
+  n.clst <- 8
+  fit1   <- fit.CLMM(data.y,data.x[,,1:9],data.x[,,1:9],n.clst)
+  fit1.u <- apply(fit1$u.hat, MARGIN=1, FUN=order, decreasing=TRUE)[1,]
+  zeta.fitted <- fit1$theta.hat$zeta.hat
+  profile.WT <- YeastCellCycle2$designMatrix.WT[1,,1:9] \%*\% t(zeta.fitted)
+#display the profile of each cluster
+ # remove bad time points for WTs
+  n.time  <- 25
+  time.WT <- (1:n.time)[-22]
+  n.rpl.WT<- length(time.WT)
+  n.gene.short<- dim(data.y)[1]
+ # gene-specific profile: observed profiles averaged over replicates
+  data.WT.mean  <- matrix(0, nrow=n.gene.short, ncol=n.rpl.WT)
+  for(j in 1:n.gene.short){
+   data.WT.mean[j,]	<- (data.y[j,1,]+data.y[j,2,])/2
+  }
+ # plot observed profiles by cluster
+  col.panel=rainbow(8)
+  par(mfrow=c(3, 3),mai=c(0.3,0.25,0.2,0.05))
+  for(k in 1:n.clst){
+  plot(5*(time.WT-1), profile.WT[,k], type="l", col=col.panel[k], ylim=c(-2,2),
+       xlab="Time", ylab="Expression Value", main=paste("WT: cluster",k))
+  i.plot 	<- (1:n.gene.short)[fit1.u==k]
+  for(j in i.plot) lines(5*(time.WT-1), data.WT.mean[j,], lty=1)
+  lines(5*(time.WT-1), profile.WT[,k], col=col.panel[k], lwd=2)
+  text(125, -1.9, pos=2, paste(length(i.plot)," genes"))
+  }
+}
 }
 
 \keyword{Functions}

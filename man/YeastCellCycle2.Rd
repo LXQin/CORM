@@ -10,14 +10,12 @@ mesured over time with two technical replicates.
 }
 \usage{data(YeastCellCycle2)}
 \format{
-  A list comprised of six components: \bold{normalizedData.WT}, \bold{normalizedData.SM}, \bold{designMatrix.WT}, \bold{designMatrix.SM}, \bold{NA.flag.WT} and \bold{NA.flag.SM}.
+  A list comprised of four components: \bold{normalizedData.WT}, \bold{normalizedData.SM}, \bold{designMatrix.WT}, and \bold{designMatrix.SM}.
  \enumerate{
   \item \bold{normalizedData.WT} and \bold{normalizedData.SM} are three-dimensional 
-  arrays containing the normalized expression data for 256 genes in WT and SM yeast, respectively. 
+  arrays containing the normalized expression data for 256 genes in WT and SM yeast, respectively. Missing values are indicated by "NA". 
   \item \bold{designMatrix.WT} and \bold{designMatrix.SM} are three-dimensional arrays
    used to fit the clustering of linear mixed models (CLMM).
-  \item \bold{NA.flag.WT} and \bold{NA.flag.SM} are three dimensional arrays of 
-  indicator for missing data, 1 for missing, 0 for otherwise.
  }
 }
 \references{
